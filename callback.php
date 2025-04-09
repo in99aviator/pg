@@ -1,6 +1,6 @@
 <?php
-require_once("./paytmconfig/config.php");
-require_once("./paytmconfig/encdec_paytm.php");
+require_once("config.php");
+require_once("encdec_paytm.php");
 
 $paytmChecksum = "";
 $paramList = $_POST;
