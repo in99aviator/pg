@@ -1,32 +1,45 @@
 <?php
+header("Pragma: no-cache");
+header("Cache-Control: no-cache");
+header("Expires: 0");
+
 require_once("./paytmconfig/config.php");
 require_once("./paytmconfig/encdec_paytm.php");
 
-$order_id = $_POST["ORDER_ID"];
-$cust_id = $_POST["CUST_ID"];
-$txn_amount = $_POST["TXN_AMOUNT"];
+$ORDER_ID = $_POST["ORDER_ID"];
+$CUST_ID = $_POST["CUST_ID"];
+$TXN_AMOUNT = $_POST["TXN_AMOUNT"];
 
-$paramList = array(
-    "MID" => PAYTM_MERCHANT_MID,
-    "WEBSITE" => PAYTM_MERCHANT_WEBSITE,
-    "INDUSTRY_TYPE_ID" => "Retail",
-    "CHANNEL_ID" => "WEB",
-    "ORDER_ID" => $order_id,
-    "CUST_ID" => $cust_id,
-    "TXN_AMOUNT" => $txn_amount,
-    "CALLBACK_URL" => "http://yourdomain.com/paytm-integration/callback.php"
-);
+$paramList = array();
 
-$checksum = getChecksumFromArray($paramList, PAYTM_MERCHANT_KEY);
+// Paytm Parameters
+$paramList["MID"] = PAYTM_MERCHANT_MID;
+$paramList["ORDER_ID"] = $ORDER_ID;
+$paramList["CUST_ID"] = $CUST_ID;
+$paramList["INDUSTRY_TYPE_ID"] = "Retail";
+$paramList["CHANNEL_ID"] = "WEB";
+$paramList["TXN_AMOUNT"] = $TXN_AMOUNT;
+$paramList["WEBSITE"] = PAYTM_MERCHANT_WEBSITE;
+$paramList["CALLBACK_URL"] = "http://localhost/paytm-integration/callback.php";
+
+// Generate checksum hash
+$checkSum = getChecksumFromArray($paramList, PAYTM_MERCHANT_KEY);
 ?>
+
 <html>
-<body>
-  <form method="post" action="<?php echo PAYTM_TXN_URL ?>" name="f1">
-  <?php foreach($paramList as $name => $value) {
-    echo '<input type="hidden" name="' . $name . '" value="' . $value . '">';
-  } ?>
-  <input type="hidden" name="CHECKSUMHASH" value="<?php echo $checksum ?>">
-  </form>
-  <script type="text/javascript">document.f1.submit();</script>
-</body>
+  <head><title>Redirecting to Paytm...</title></head>
+  <body>
+    <center><h1>Please do not refresh this page...</h1></center>
+    <form method="post" action="https://securegw-stage.paytm.in/theia/processTransaction" name="paytm_form">
+      <?php
+      foreach ($paramList as $name => $value) {
+          echo '<input type="hidden" name="' . $name . '" value="' . $value . '">';
+      }
+      ?>
+      <input type="hidden" name="CHECKSUMHASH" value="<?php echo $checkSum; ?>">
+    </form>
+    <script type="text/javascript">
+      document.paytm_form.submit();
+    </script>
+  </body>
 </html>
