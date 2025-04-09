@@ -3,8 +3,8 @@ header("Pragma: no-cache");
 header("Cache-Control: no-cache");
 header("Expires: 0");
 
-require_once("./paytmconfig/config.php");
-require_once("./paytmconfig/encdec_paytm.php");
+require_once("config.php");
+require_once("encdec_paytm.php");
 
 $ORDER_ID = $_POST["ORDER_ID"];
 $CUST_ID = $_POST["CUST_ID"];
