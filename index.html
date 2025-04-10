@@ -1,13 +1,50 @@
 <!DOCTYPE html>
-<html>
-<head><title>Pay with Paytm</title></head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Deposit using UPI</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
 <body>
-  <h2>Paytm Payment Demo</h2>
-  <form method="post" action="pay.php">
-    <input type="text" name="ORDER_ID" value="ORD123456" readonly /><br>
-    <input type="text" name="CUST_ID" value="CUST001" /><br>
-    <input type="text" name="TXN_AMOUNT" value="100" /><br>
-    <input type="submit" value="Pay Now" />
-  </form>
+  <div class="container">
+    <div class="header">
+      <span class="close">&times;</span>
+      <h2>Deposit using UPI</h2>
+      <div id="timer">05:00</div>
+    </div>
+
+    <div class="qr-box">
+      <p class="label">Scan QR code using UPI app</p>
+      <div class="qr-section">
+        <canvas id="qrCode"></canvas>
+      </div>
+      <div class="upi-info">
+        <p>UPI ID to pay manually</p>
+        <div class="copy-row">
+          <span id="upiId">boim-905432060444@boi</span>
+          <button onclick="copyUPI()">📋</button>
+        </div>
+        <p>Amount</p>
+        <div class="copy-row">
+          <span>300.00 INR</span>
+          <button onclick="copyAmount()">📋</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="instructions">
+      <h3>How to pay</h3>
+      <ol>
+        <li>Scan QR code or copy UPI ID</li>
+        <li>Pay using UPI app</li>
+        <li>After payment, come back and tap “I have paid”</li>
+      </ol>
+    </div>
+
+    <button class="paid-btn" onclick="confirmPayment()">I have paid</button>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
