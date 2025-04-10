@@ -1,29 +1,23 @@
-* {
-  box-sizing: border-box;
-  margin: 10;
-  padding: 10;
-}
-
-body, html {
-  height: 100%;
-  width: 100%;
+body {
   font-family: 'Segoe UI', sans-serif;
   background: #f2f3f4;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  max-width: 400px;
+  margin: 30px auto;
+  background: #fff;
+  border-radius: 16px;
   padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 0px;
 }
 
 .close {
@@ -33,14 +27,14 @@ body, html {
 
 #timer {
   background: #eee;
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-radius: 10px;
   font-weight: bold;
 }
 
 .qr-box {
   text-align: center;
-  margin-top: 0px;
+  margin-top: 20px;
 }
 
 .qr-section {
@@ -68,32 +62,60 @@ body, html {
   display: flex;
   justify-content: space-between;
   background: #f9f9f9;
-  padding: 10px 14px;
+  padding: 8px 12px;
   border-radius: 10px;
   margin: 5px 0;
 }
 
 .instructions {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .instructions ol {
-  padding-left: 10px;
+  padding-left: 20px;
 }
 
-.paid-btn {
+.pay-btn {
   width: 100%;
   padding: 16px;
-  background: #2e7d32;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
   color: white;
   border: none;
   border-radius: 12px;
-  font-size: 17px;
-  margin-top: 0px;
+  font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 0 10px #27ae60;
+  transition: all 0.3s ease;
 }
 
-.paid-btn:hover {
-  background: #1b5e20;
+.pay-btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 10%, transparent 60%);
+  animation: pulse 2s infinite;
+  z-index: 0;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.pay-btn:hover {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  box-shadow: 0 0 20px #2ecc71, 0 0 40px #27ae60;
 }
