@@ -50,8 +50,8 @@ body, html {
 }
 
 .qr-section canvas {
-  width: 220px !important;
-  height: 220px !important;
+  width: 260px !important;
+  height: 260px !important;
 }
 
 .label {
