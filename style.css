@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  margin: 10;
+  padding: 10;
 }
 
 body, html {
@@ -40,7 +40,7 @@ body, html {
 
 .qr-box {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 .qr-section {
@@ -69,11 +69,11 @@ body, html {
 }
 
 .instructions {
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 .instructions ol {
-  padding-left: 20px;
+  padding-left: 0px;
 }
 
 .paid-btn {
@@ -84,7 +84,7 @@ body, html {
   border: none;
   border-radius: 12px;
   font-size: 17px;
-  margin-top: 30px;
+  margin-top: 10px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
