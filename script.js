@@ -1,4 +1,4 @@
-const upiID = "paytm.s19ujkg@pty";
+const upiID = "in99softdev78@upi";
 const amount = "399.00";
 
 // Generate QR Code
